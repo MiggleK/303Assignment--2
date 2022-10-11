@@ -10,6 +10,7 @@
 #include <iostream>
 #include <fstream>
 #include "Assignment2.h"
+#include <stdexcept>
 
 void arrayIncrease(int*& values, int& size, int addition)
 {
@@ -91,15 +92,34 @@ void modifyArray(int array[], int size)
 	int index;
 	int newValue;
 
-	std::cout << "Enter the index you wish to modify: ";
-	std::cin >> index;
+	try
+	{
+		std::cout << "Enter the index you wish to modify: ";
+		std::cin >> index;
+	}
+
+	catch (std::ios_base::failure& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	catch (std::exception& ex)
+	{
+		std::cerr << ex.what() << std::endl;
+	}
+
+	catch (...)
+	{
+		std::cerr << "Undefined exception occured." << std::endl;
+	}
+		
 	std::cout << "\n";
 
 	oldNum = array[index];
 
 	std::cout << "Enter the new value of this index: ";
 	std::cin >> newValue;
-
+	
 	array[index] = newValue;
 	std::cout << "Old value: " << oldNum << std::endl;
 	std::cout << "New Value: " << newValue << std::endl;
@@ -182,8 +202,31 @@ int main()
 		else if (choice == 3)
 		{
 			int addition = 0;
-			std::cout << "Please enter the number you wish to add: ";
-			std::cin >> addition;
+			try
+			{
+				std::cout << "Please enter the number you wish to add: ";
+				std::cin >> addition;
+			}
+
+			catch (std::ios_base::failure& e)
+			{
+				std::cerr << e.what() << std::endl;
+				std::abort();
+			}
+
+			catch (std::exception& ex)
+			{
+				std::cerr << ex.what() << std::endl;
+				std::abort();
+			}
+
+			catch (...)
+			{
+				std::cerr << "Undefined exception occured." << std::endl;
+				std::abort();
+			}
+
+			
 			std::cout << std::endl;
 
 			size++;
