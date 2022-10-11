@@ -11,6 +11,7 @@
 #include <fstream>
 #include "Assignment2.h"
 #include <stdexcept>
+#include <string>
 
 void arrayIncrease(int*& values, int& size, int addition)
 {
@@ -100,17 +101,19 @@ void modifyArray(int array[], int size)
 
 	catch (std::ios_base::failure& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << "Input error." << std::endl;
 	}
 
 	catch (std::exception& ex)
 	{
 		std::cerr << ex.what() << std::endl;
+		abort();
 	}
 
 	catch (...)
 	{
 		std::cerr << "Undefined exception occured." << std::endl;
+		abort();
 	}
 		
 	std::cout << "\n";
@@ -147,6 +150,10 @@ void printArray(int values[], int size)
 
 int main()
 {
+
+	//very important
+	std::cin.exceptions(std::cin.failbit);
+
 	//Variable Decleration
 	int size = 100;
 	int* values = new int[size];
@@ -201,7 +208,7 @@ int main()
 		//Array Addition
 		else if (choice == 3)
 		{
-			int addition = 0;
+			int addition;
 			try
 			{
 				std::cout << "Please enter the number you wish to add: ";
