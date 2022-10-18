@@ -12,6 +12,16 @@ void NonProfessional::set_rate(double hourlyRate)
     this->hourlyRate = hourlyRate;
 }
 
+void Professional::set_salary(double salary)
+{
+    this->hoursWorked = hoursWorked;
+}
+
+void Professional::set_vacationDays(double vacationDays)
+{
+    this->hourlyRate = hourlyRate;
+}
+
 
 int main()
 {
